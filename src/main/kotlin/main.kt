@@ -1,15 +1,12 @@
 fun main() {
     val deck = newShuffledDeck()
 
-    val hand1 = sortedSetOf<Card>()
-    val hand2 = sortedSetOf<Card>()
-    do {
-        hand1 += deck.takeOne()
-        hand2 += deck.takeOne()
-    } while (hand1.size < 6)
+    val player1 = Player()
+    val player2 = Player()
+    deck.deal(6, player1.hand, player2.hand)
 
-    println(hand1)
-    println(hand2)
+    println(player1.hand)
+    println(player2.hand)
 }
 
 
