@@ -3,6 +3,7 @@ fun main() {
     var players = decideDealer()
     var (dealer, nonDealer) = players
 
+    // game loop starts here
     println("dealer is player ${dealer.name}, player ${nonDealer.name} is next")
 
     val deck = newShuffledDeck()
@@ -25,9 +26,14 @@ fun main() {
     println("dealer hand: ${dealer.hand}")
     println("nonDealer hand: ${nonDealer.hand}")
 
-    // to swap:
-    // dealer = nonDealer.also { nonDealer = dealer }
+    // the cut:
+    val cut = nonDealer.cut(deck)
+    if (cut.value == Value.Jack) dealer.score(2)
 
+    // to swap:
+    //  dealer = nonDealer.also { nonDealer = dealer }
+    // then restart game loop
+    // wrap in a try-catch for GameOver, and announce the winner
 }
 
 private fun decideDealer(): Pair<Player, Player> {
