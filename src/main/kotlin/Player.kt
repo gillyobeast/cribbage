@@ -1,3 +1,4 @@
+import java.util.*
 import kotlin.random.Random
 
 class Player(val name: String) {
@@ -15,8 +16,19 @@ class Player(val name: String) {
 
     val hand: MutableSet<Card> = sortedSetOf()
 
-    fun score(points: Int){
+    fun score(points: Int) {
         score += points
         if (score > 121) throw GameOver(winner = this)
     }
+}
+
+fun Pair<Player, Player>.discardToCrib(): SortedSet<Card> {
+    val crib = buildSet {
+        //  for now, each player will choose two random cards to discard to the crib
+        this += first.randomCard()
+        this += first.randomCard()
+        this += second.randomCard()
+        this += second.randomCard()
+    }.toSortedSet()
+    return crib
 }

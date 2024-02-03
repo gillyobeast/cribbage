@@ -14,13 +14,7 @@ fun main() {
     println("nonDealer hand: ${nonDealer.hand}")
 
     // the crib
-    val crib = buildSet {
-        //  for now, each player will choose two random cards to discard to the crib
-        for (player in players) {
-            add(player.randomCard())
-            add(player.randomCard())
-        }
-    }
+    val crib = players.discardToCrib()
     println("crib: $crib")
 
     println("dealer hand: ${dealer.hand}")
@@ -49,9 +43,6 @@ private fun decideDealer(): Pair<Player, Player> {
     }
 }
 
-operator fun <T> Pair<T, T>.iterator(): Iterator<T> {
-    return listOf(first, second).listIterator()
-}
 
 
 
