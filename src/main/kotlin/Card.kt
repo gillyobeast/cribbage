@@ -7,18 +7,24 @@ data class Card(val value: Value, val suit: Suit) : Comparable<Card> {
         }
     }
 
-    override fun toString() = "$value of $suit"
-
-
+    override fun toString() = "$value$suit"
 }
 
 
-enum class Value {
-    Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
+enum class Value(val symbol: String) {
+    Ace("A"), Two("2"), Three("3"), Four("4"),
+    Five("5"), Six("6"), Seven("7"), Eight("8"),
+    Nine("9"), Ten("10"), Jack("J"), Queen("Q"),
+    King("K");
+
+    override fun toString() = symbol
 }
 
-enum class Suit {
-    Spades, Hearts, Clubs, Diamonds
+enum class Suit(val symbol: String) {
+    Spades("♠"), Hearts("♥"), Clubs("♣"), Diamonds("♦");
+
+    override fun toString() = symbol
+
 }
 
 /* IDK if it'll be used, but it's neat! */
