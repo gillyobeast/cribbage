@@ -1,17 +1,17 @@
-data class Card(val value: Value, val suit: Suit) : Comparable<Card> {
+data class Card(val rank: Rank, val suit: Suit) : Comparable<Card> {
     override fun compareTo(other: Card): Int {
-        return if (this.value == other.value) {
+        return if (this.rank == other.rank) {
             this.suit.compareTo(other.suit)
         } else {
-            this.value.compareTo(other.value)
+            this.rank.compareTo(other.rank)
         }
     }
 
-    override fun toString() = "$value$suit"
+    override fun toString() = "$rank$suit"
 }
 
 
-enum class Value(val symbol: String) {
+enum class Rank(val symbol: String) {
     Ace("A"), Two("2"), Three("3"), Four("4"),
     Five("5"), Six("6"), Seven("7"), Eight("8"),
     Nine("9"), Ten("10"), Jack("J"), Queen("Q"),
@@ -28,4 +28,4 @@ enum class Suit(val symbol: String) {
 }
 
 /* IDK if it'll be used, but it's neat! */
-infix fun Value.of(suit: Suit): Card = Card(this, suit)
+infix fun Rank.of(suit: Suit): Card = Card(this, suit)

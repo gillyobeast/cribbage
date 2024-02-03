@@ -22,7 +22,7 @@ fun main() {
 
     // the cut:
     val cut = nonDealer.cut(deck)
-    if (cut.value == Value.Jack) dealer.score(2)
+    if (cut.rank == Rank.Jack) dealer.score(2)
 
     // to swap:
     //  dealer = nonDealer.also { nonDealer = dealer }
@@ -34,7 +34,7 @@ private fun decideDealer(): Pair<Player, Player> {
     val deck = newShuffledDeck()
     val player1 = Player("one")
     val player2 = Player("two")
-    val comparison = player1.cut(deck).value.compareTo(player2.cut(deck).value)
+    val comparison = player1.cut(deck).rank.compareTo(player2.cut(deck).rank)
     return when {
         comparison < 0 -> player1 to player2
         comparison > 0 -> player2 to player1

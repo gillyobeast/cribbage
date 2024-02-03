@@ -17,7 +17,7 @@ fun Deck.deal(cards: Int, vararg hands: MutableSet<Card>) {
 fun newShuffledDeck(): Deck {
     val deck = Deck(52)
     for (suit in Suit.entries) {
-        for (value in Value.entries) {
+        for (value in Rank.entries) {
             deck.add(value of suit)
         }
     }
