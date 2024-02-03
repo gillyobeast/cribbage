@@ -2,7 +2,7 @@ import kotlin.random.Random
 
 typealias Deck = ArrayDeque<Card>
 
-fun Deck.cut(): Card = this[Random.nextInt(this.size)]
+fun Deck.cut(random: Random): Card = this[random.nextInt(this.size)]
 
 fun Deck.topCard() = removeFirst()
 
