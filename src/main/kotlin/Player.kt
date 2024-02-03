@@ -6,5 +6,11 @@ class Player(val name: String) {
         return deck.cut(random)
     }
 
+    fun randomCard(): Card {
+        val card = hand.random(random)
+        hand.remove(card)
+        return card
+    }
+
     val hand: MutableSet<Card> = sortedSetOf()
 }

@@ -1,6 +1,7 @@
 fun main() {
 
-    var (dealer, nonDealer) = decideDealer()
+    var players = decideDealer()
+    var (dealer, nonDealer) = players
 
     println("dealer is player ${dealer.name}, player ${nonDealer.name} is next")
 
@@ -8,9 +9,21 @@ fun main() {
     // the deal
     deck.deal(6, dealer.hand, nonDealer.hand)
 
-    println(dealer.hand)
-    println(nonDealer.hand)
+    println("dealer hand: ${dealer.hand}")
+    println("nonDealer hand: ${nonDealer.hand}")
 
+    // the crib
+    val crib = buildSet {
+        //  for now, each player will choose two random cards to discard to the crib
+        for (player in players) {
+            add(player.randomCard())
+            add(player.randomCard())
+        }
+    }
+    println("crib: $crib")
+
+    println("dealer hand: ${dealer.hand}")
+    println("nonDealer hand: ${nonDealer.hand}")
 
     // to swap:
     // dealer = nonDealer.also { nonDealer = dealer }
@@ -30,6 +43,9 @@ private fun decideDealer(): Pair<Player, Player> {
     }
 }
 
+operator fun <T> Pair<T, T>.iterator(): Iterator<T> {
+    return listOf(first, second).listIterator()
+}
 
 
 
